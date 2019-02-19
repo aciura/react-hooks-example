@@ -21,9 +21,14 @@ export function ShipNameForm() {
         value={name}
         onChange={handleNameChange}
       />
-      <button style={{ display: 'inline-block;' }} onClick={dispatchShipRename}>
+      <button style={{ display: 'inline-block' }} onClick={dispatchShipRename}>
         Rename Ship
       </button>
+      <span>
+        Position: ({Math.floor(context.shipPosition.x)},
+        {Math.floor(context.shipPosition.y)}) Speed:
+        {context.shipSpeed} Dir: {context.shipDirection}
+      </span>
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { WorldContext } from './components/WorldContext'
 import { ShipNameForm } from './components/ShipNameForm'
 import { World } from './components/World'
 import { reducer, initState } from './reducer'
+import { GameEngine } from './GameEngine'
 import './App.css'
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
       <WorldContext.Provider value={{ ...state, dispatch }}>
         <ShipNameForm />
         <World width={width} height={height} />
+        <GameEngine />
       </WorldContext.Provider>
     </div>
   )

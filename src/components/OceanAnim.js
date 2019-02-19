@@ -6,8 +6,10 @@ const NUM_OF_FILES = 21
 
 export default function OceanAnim({ width, height, updateSpeed = 50 /*ms*/ }) {
   const [currentImg, setCurrentImg] = useState(0)
+
   const renderImages = useMemo(() => {
     console.log('MEMO: loading images')
+
     return Array(NUM_OF_FILES)
       .fill(0)
       .map((i, idx) => (idx + 1).toString().padStart(2, '0'))
