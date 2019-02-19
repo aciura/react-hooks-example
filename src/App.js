@@ -1,28 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from 'react'
+import { WorldContext } from './components/WorldContext'
+import { ShipNameForm } from './components/ShipNameForm'
+import { World } from './components/World'
+import { reducer, initState } from './reducer'
+import './App.css'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+const App = () => {
+  console.log('App')
+
+  const width = 800
+  const height = 600
+  const [state, dispatch] = useReducer(reducer, initState)
+
+  return (
+    <div className="App">
+      <h1>React Hooks!</h1>
+      <WorldContext.Provider value={{ ...state, dispatch }}>
+        <ShipNameForm />
+        <World width={width} height={height} />
+      </WorldContext.Provider>
+    </div>
+  )
 }
 
-export default App;
+export default App
