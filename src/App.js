@@ -5,20 +5,21 @@ import { World } from './components/World'
 import { reducer, initState } from './reducer'
 import { GameEngine } from './GameEngine'
 import './App.css'
+import { KeyboardController } from './components/UserController'
 
 const App = () => {
   console.log('App')
 
-  const width = 800
-  const height = 600
   const [state, dispatch] = useReducer(reducer, initState)
+  const { worldWidth, worldHeight } = state
 
   return (
     <div className="App">
       <h1>React Hooks!</h1>
       <WorldContext.Provider value={{ ...state, dispatch }}>
+        <KeyboardController />
         <ShipNameForm />
-        <World width={width} height={height} />
+        <World width={worldWidth} height={worldHeight} />
         <GameEngine />
       </WorldContext.Provider>
     </div>

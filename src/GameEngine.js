@@ -1,12 +1,20 @@
-import { useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { WorldContext } from './components/WorldContext'
-import { shipMovedAction } from './components/actions'
+import {
+  shipMovedAction,
+  shipDirectionChangeAction,
+} from './components/actions'
 
 export function GameEngine() {
   console.log('GameEngine')
-  const { dispatch, shipSpeed, shipDirection, shipPosition } = useContext(
-    WorldContext
-  )
+  const {
+    dispatch,
+    shipSpeed,
+    shipDirection,
+    shipPosition,
+    worldWidth,
+    worldHeight,
+  } = useContext(WorldContext)
 
   function moveShip() {
     const newX =
@@ -14,7 +22,11 @@ export function GameEngine() {
     const newY =
       shipPosition.y - shipSpeed * Math.sin((shipDirection * Math.PI) / 180)
 
-    dispatch(shipMovedAction({ x: newX, y: newY }))
+    if (newX < 0 || newX > worldWidth || newY < 0 || newY > worldHeight) {
+      dispatch(shipDirectionChangeAction(shipDirection + 90))
+    } else {
+      dispatch(shipMovedAction({ x: newX, y: newY }))
+    }
   }
 
   useEffect(() => {

@@ -7,6 +7,9 @@ export const initState = {
   shipPosition: { x: 300, y: 300 },
   shipDirection: 0,
   shipSpeed: 0,
+
+  worldWidth: 800,
+  worldHeight: 600,
 }
 
 export function reducer(state, action) {
@@ -16,7 +19,7 @@ export function reducer(state, action) {
     case actionType.ShipDirectionChange: {
       return {
         ...state,
-        shipDirection: action.payload % 360,
+        shipDirection: (action.payload + 360) % 360,
       }
     }
 
@@ -28,6 +31,7 @@ export function reducer(state, action) {
         shipSpeed: Math.max(0, Math.min(action.payload, maxSpeed)),
       }
     }
+
     case actionType.ShipMoved: {
       return {
         ...state,
@@ -35,6 +39,7 @@ export function reducer(state, action) {
         shipPath: [...state.shipPath.slice(-10), action.payload],
       }
     }
+
     case actionType.ShipRename: {
       return {
         ...state,
