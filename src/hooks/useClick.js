@@ -1,7 +1,8 @@
 import { useEffect, useContext } from 'react'
-import { WorldContext } from './WorldContext'
+import GameContext from '../components/GameContext'
+
 const useClick = () => {
-  const context = useContext(WorldContext)
+  const context = useContext(GameContext)
   const logClick = e => {
     console.log(`x:${e.clientX},y:${e.clientY}`)
     context.dispatch({
@@ -14,3 +15,4 @@ const useClick = () => {
     return () => window.document.removeEventListener('click', logClick)
   })
 }
+export default useClick

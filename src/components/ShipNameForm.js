@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
-import { WorldContext } from './WorldContext'
-import { shipRenameAction } from './actions'
+import GameContext from './GameContext'
+import { shipRenameAction } from '../actions'
 
 export function ShipNameForm() {
   const [name, setName] = useState('React Pearl')
@@ -8,7 +8,7 @@ export function ShipNameForm() {
     setName(e.target.value)
   }
 
-  const context = useContext(WorldContext)
+  const context = useContext(GameContext)
   const dispatchShipRename = () => {
     context.dispatch(shipRenameAction(name))
   }
@@ -25,7 +25,7 @@ export function ShipNameForm() {
         Rename Ship
       </button>
       <span>
-        Position: ({Math.floor(context.shipPosition.x)},
+        &nbsp; Position: ({Math.floor(context.shipPosition.x)},
         {Math.floor(context.shipPosition.y)}) Speed:
         {context.shipSpeed} Dir: {context.shipDirection}
       </span>

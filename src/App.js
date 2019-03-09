@@ -1,5 +1,5 @@
-import React, { useReducer } from 'react'
-import { WorldContext } from './components/WorldContext'
+import React, { useReducer, useState } from 'react'
+import GameContext from './components/GameContext'
 import { ShipNameForm } from './components/ShipNameForm'
 import { World } from './components/World'
 import { reducer, initState } from './reducer'
@@ -12,16 +12,20 @@ const App = () => {
 
   const [state, dispatch] = useReducer(reducer, initState)
   const { worldWidth, worldHeight } = state
+  const [isPlaying, setIsPlaying] = useState(true)
 
   return (
     <div className="App">
       <h1>React Hooks!</h1>
-      <WorldContext.Provider value={{ ...state, dispatch }}>
+      <GameContext.Provider value={{ ...state, dispatch }}>
         <KeyboardController />
         <ShipNameForm />
         <World width={worldWidth} height={worldHeight} />
-        <GameEngine />
-      </WorldContext.Provider>
+        <GameEngine isPlaying={isPlaying} />
+        <button onClick={() => setIsPlaying(!isPlaying)}>
+          {isPlaying ? 'Pause' : 'Play'}
+        </button>
+      </GameContext.Provider>
     </div>
   )
 }

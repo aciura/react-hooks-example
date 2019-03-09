@@ -1,12 +1,10 @@
-import React, { useContext, useEffect } from 'react'
-import { WorldContext } from './components/WorldContext'
-import {
-  shipMovedAction,
-  shipDirectionChangeAction,
-} from './components/actions'
+import React, { useContext, useEffect, useState } from 'react'
+import GameContext from './components/GameContext'
+import { shipMovedAction, shipDirectionChangeAction } from './actions'
 
-export function GameEngine() {
-  console.log('GameEngine')
+export function GameEngine({ isPlaying }) {
+  // const [counter, setCounter] = useState(0)
+  console.log(`GameEngine: isPlaying:${isPlaying}`)
   const {
     dispatch,
     shipSpeed,
@@ -14,9 +12,10 @@ export function GameEngine() {
     shipPosition,
     worldWidth,
     worldHeight,
-  } = useContext(WorldContext)
+  } = useContext(GameContext)
 
-  function moveShip() {
+  function moveShip(timestamp) {
+    console.log(`GameEngine: moveShip, timestamp:${timestamp}`)
     const newX =
       shipPosition.x - shipSpeed * Math.cos((shipDirection * Math.PI) / 180)
     const newY =
@@ -29,11 +28,22 @@ export function GameEngine() {
     }
   }
 
+  const [lastUpdateTime, setLastUpdateTime] = useState(0)
   useEffect(() => {
-    const requestId = window.requestAnimationFrame(timestamp => moveShip())
-    return function cleanup() {
-      window.cancelAnimationFrame(requestId)
+    console.log('GameEngine: useEffect, isPlaying:', isPlaying)
+    if (isPlaying) {
+      console.log('GameEngine: requestAnimationFrame isPlaying:', isPlaying)
+      const requestId = window.requestAnimationFrame(currentTime => {
+        const timeDiff = currentTime - lastUpdateTime
+        moveShip(timeDiff)
+        setLastUpdateTime(currentTime)
+      })
+      return function cleanup() {
+        console.log('GameEngine: cancelAnimationFrame isPlaying:', isPlaying)
+        window.cancelAnimationFrame(requestId)
+      }
     }
   })
+
   return null
 }

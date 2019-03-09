@@ -4,10 +4,10 @@ import React, { useMemo, useState, useEffect } from 'react'
 const ocean = require.context('../assets/ocean', /*useSubDirs*/ false)
 const NUM_OF_FILES = 21
 
-export default function OceanAnim({ width, height, updateSpeed = 50 /*ms*/ }) {
+export default function OceanAnimation({ width, height }) {
   const [currentImg, setCurrentImg] = useState(0)
 
-  const renderImages = useMemo(() => {
+  const renderedImages = useMemo(() => {
     console.log('MEMO: loading images')
 
     return Array(NUM_OF_FILES)
@@ -28,5 +28,5 @@ export default function OceanAnim({ width, height, updateSpeed = 50 /*ms*/ }) {
     }
   })
 
-  return renderImages[currentImg]
+  return <div>{renderedImages[currentImg]}</div>
 }

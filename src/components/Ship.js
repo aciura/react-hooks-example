@@ -1,20 +1,21 @@
 import React, { useState, useContext } from 'react'
 import PirateShipPng from '../assets/pirate-ship.png'
-import { WorldContext } from './WorldContext'
+import GameContext from './GameContext'
 import { ShipPath } from './ShipPath'
 
 const SHIP_SIZE = 50
 
-export function Ship({ initX, initY }) {
+export function Ship({ offset }) {
   // const [path, setPath] = useState([{ x: initX, y: initY }])
 
   const { shipPosition, shipDirection, shipSpeed, shipName } = useContext(
-    WorldContext
+    GameContext
   )
   const { x, y } = shipPosition
 
   console.log(
-    `Ship ${shipName} (x:${x},y:${y} dir:${shipDirection} speed:${shipSpeed}`
+    `Ship ${shipName} (x:${x},y:${y} dir:${shipDirection} speed:${shipSpeed})`,
+    offset
   )
 
   // TODO: setPath([...path.slice(-10), newPosition])
@@ -24,7 +25,13 @@ export function Ship({ initX, initY }) {
   return (
     <React.Fragment>
       {/* <ShipPath path={path} /> */}
-      <div style={{ position: 'absolute', left: `${x}px`, top: `${y}px` }}>
+      <div
+        style={{
+          position: 'absolute',
+          left: `${x + offset.left}px`,
+          top: `${y + offset.top}px`,
+        }}
+      >
         <img
           style={{
             width: SHIP_SIZE,
@@ -34,14 +41,7 @@ export function Ship({ initX, initY }) {
           alt="Ship"
           src={PirateShipPng}
         />
-        <span
-          style={{
-            display: 'block',
-            transform: `rotate(${shipDirection}deg) ${scaleY}`,
-          }}
-        >
-          {shipName}
-        </span>
+        <span style={{ display: 'block' }}>{shipName}</span>
       </div>
     </React.Fragment>
   )

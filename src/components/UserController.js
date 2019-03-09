@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
-import { WorldContext } from './WorldContext'
-import { shipSpeedChangeAction, shipDirectionChangeAction } from './actions'
-import { useKey } from './useKey'
+import GameContext from './GameContext'
+import { shipSpeedChangeAction, shipDirectionChangeAction } from '../actions'
+import useKey from '../hooks/useKey'
 
 export function KeyboardController() {
   console.log('UserController')
 
-  const { dispatch, shipDirection, shipSpeed } = useContext(WorldContext)
+  const { dispatch, shipDirection, shipSpeed } = useContext(GameContext)
 
   const move = key => {
     if (key === 'w') {
@@ -25,5 +25,5 @@ export function KeyboardController() {
 
   useKey(move)
 
-  return <span>Press WSAD</span>
+  return <span>Control using 'W' 'S' 'A' 'D' keys</span>
 }

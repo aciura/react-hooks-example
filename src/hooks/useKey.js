@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-export const useKey = callback => {
+
+const useKey = callback => {
   const keyEvent = 'keypress'
 
   const handleKey = e => {
@@ -11,3 +12,4 @@ export const useKey = callback => {
     return () => window.document.removeEventListener(keyEvent, handleKey)
   }, [callback])
 }
+export default useKey

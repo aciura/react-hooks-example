@@ -1,4 +1,4 @@
-import { actionType } from './components/actions'
+import { actionType } from './actions'
 
 export const initState = {
   shipPath: [],
