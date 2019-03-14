@@ -3,9 +3,9 @@ import GameContext from './components/GameContext'
 import { ShipNameForm } from './components/ShipNameForm'
 import { World } from './components/World'
 import { reducer, initState } from './reducer'
-import { GameEngine } from './GameEngine'
 import './App.css'
 import { KeyboardController } from './components/UserController'
+import { useTimer } from './hooks/useTimer'
 
 const App = () => {
   console.log('App')
@@ -14,6 +14,8 @@ const App = () => {
   const { worldWidth, worldHeight } = state
   const [isPlaying, setIsPlaying] = useState(true)
 
+  useTimer(isPlaying, dispatch)
+
   return (
     <div className="App">
       <h1>React Hooks!</h1>
@@ -21,7 +23,6 @@ const App = () => {
         <KeyboardController />
         <ShipNameForm />
         <World width={worldWidth} height={worldHeight} />
-        <GameEngine isPlaying={isPlaying} />
         <button onClick={() => setIsPlaying(!isPlaying)}>
           {isPlaying ? 'Pause' : 'Play'}
         </button>

@@ -1,6 +1,9 @@
 import { actionType } from './actions'
+import { moveShip } from './gameEngine'
 
 export const initState = {
+  gameTick: 0,
+
   shipPath: [],
   dispatch: () => {},
   shipName: 'React Pearl',
@@ -16,6 +19,14 @@ export function reducer(state, action) {
   console.log('reducer', state, action)
 
   switch (action.type) {
+    case actionType.GameTick: {
+      return {
+        ...state,
+        gameTick: state.gameTick + 1,
+        ...moveShip({ state, currentTime: action.payload }),
+      }
+    }
+
     case actionType.ShipDirectionChange: {
       return {
         ...state,

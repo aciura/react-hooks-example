@@ -1,8 +1,13 @@
 export const actionType = {
+  GameTick: 'game.tick',
   ShipRename: 'ship.rename',
   ShipMoved: 'ship.moved',
   ShipSpeedChange: 'ship.speedChange',
   ShipDirectionChange: 'ship.directionChange',
+}
+
+export function gameTickAction(time) {
+  return { type: actionType.GameTick, payload: time }
 }
 
 export function shipRenameAction(name) {
