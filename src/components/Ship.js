@@ -1,16 +1,18 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import PirateShipPng from '../assets/pirate-ship.png'
 import GameContext from './GameContext'
 import { ShipPath } from './ShipPath'
 
-const SHIP_SIZE = 50
-
 export function Ship({ offset }) {
   // const [path, setPath] = useState([{ x: initX, y: initY }])
 
-  const { shipPosition, shipDirection, shipSpeed, shipName } = useContext(
-    GameContext
-  )
+  const {
+    shipPosition,
+    shipDirection,
+    shipSpeed,
+    shipName,
+    shipSize,
+  } = useContext(GameContext)
   const { x, y } = shipPosition
 
   console.log(
@@ -34,8 +36,8 @@ export function Ship({ offset }) {
       >
         <img
           style={{
-            width: SHIP_SIZE,
-            height: SHIP_SIZE,
+            width: shipSize,
+            height: shipSize,
             transform: `rotate(${shipDirection}deg) ${scaleY}`,
           }}
           alt="Ship"

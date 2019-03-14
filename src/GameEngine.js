@@ -12,6 +12,7 @@ export function moveShip({ state, currentTime }) {
     shipSpeed,
     shipDirection,
     shipPosition,
+    shipSize,
     worldWidth,
     worldHeight,
   } = state
@@ -27,7 +28,12 @@ export function moveShip({ state, currentTime }) {
   const newY =
     shipPosition.y - shipSpeed * Math.sin((shipDirection * Math.PI) / 180)
 
-  if (newX < 0 || newX > worldWidth || newY < 0 || newY > worldHeight) {
+  if (
+    newX < 0 ||
+    newX > worldWidth - shipSize ||
+    newY < 0 ||
+    newY > worldHeight - shipSize
+  ) {
     newState.shipDirection = shipDirection + 90
   } else {
     newState.shipPosition = { x: newX, y: newY }

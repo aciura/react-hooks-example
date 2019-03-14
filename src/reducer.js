@@ -10,6 +10,7 @@ export const initState = {
   shipPosition: { x: 300, y: 300 },
   shipDirection: 0,
   shipSpeed: 0,
+  shipSize: 50,
 
   worldWidth: 800,
   worldHeight: 600,
