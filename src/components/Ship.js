@@ -1,11 +1,8 @@
 import React, { useContext } from 'react'
 import PirateShipPng from '../assets/pirate-ship.png'
 import GameContext from './GameContext'
-import { ShipPath } from './ShipPath'
 
 export function Ship({ offset }) {
-  // const [path, setPath] = useState([{ x: initX, y: initY }])
-
   const {
     shipPosition,
     shipDirection,
@@ -16,17 +13,13 @@ export function Ship({ offset }) {
   const { x, y } = shipPosition
 
   console.log(
-    `Ship ${shipName} (x:${x},y:${y} dir:${shipDirection} speed:${shipSpeed})`,
-    offset
+    `Ship ${shipName} (x:${x},y:${y} dir:${shipDirection} speed:${shipSpeed})`
   )
-
-  // TODO: setPath([...path.slice(-10), newPosition])
 
   const scaleY = shipDirection > 90 && shipDirection < 270 ? 'scaleY(-1)' : ''
 
   return (
     <React.Fragment>
-      {/* <ShipPath path={path} /> */}
       <div
         style={{
           position: 'absolute',

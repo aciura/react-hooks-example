@@ -44,14 +44,6 @@ export function reducer(state, action) {
       }
     }
 
-    case actionType.ShipMoved: {
-      return {
-        ...state,
-        shipPosition: action.payload,
-        shipPath: [...state.shipPath.slice(-10), action.payload],
-      }
-    }
-
     case actionType.ShipRename: {
       return {
         ...state,
@@ -60,7 +52,7 @@ export function reducer(state, action) {
     }
 
     default: {
-      throw new Error(`Unknown action type '${action.type}'`, action)
+      console.error(`Unknown action type '${action.type}'`, action)
     }
   }
 }

@@ -4,7 +4,7 @@ import { ShipNameForm } from './components/ShipNameForm'
 import { World } from './components/World'
 import { reducer, initState } from './reducer'
 import './App.css'
-import { KeyboardController } from './components/UserController'
+import { KeyboardController } from './components/KeyboardController'
 import { useTimer } from './hooks/useTimer'
 
 const App = () => {

@@ -39,6 +39,11 @@ export function moveShip({ state, currentTime }) {
     newState.shipPosition = { x: newX, y: newY }
   }
 
+  newState.shipPath = [
+    ...state.shipPath.slice(-10),
+    { x: shipPosition.x, y: shipPosition.y },
+  ]
+
   lastUpdateTime = currentTime
   return newState
 }

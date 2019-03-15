@@ -4,7 +4,7 @@ import { shipSpeedChangeAction, shipDirectionChangeAction } from '../actions'
 import useKey from '../hooks/useKey'
 
 export function KeyboardController() {
-  console.log('UserController')
+  console.log('KeyboardController')
 
   const { dispatch, shipDirection, shipSpeed } = useContext(GameContext)
 

@@ -10,6 +10,7 @@ export const World = ({ width = 800, height = 600 }) => {
   const windowSize = useWindowSize()
 
   const [offset, setOffset] = useState({})
+
   // run this effect each time windowSize has changed
   useEffect(() => {
     const clientRect = oceanRef.current.getBoundingClientRect()
