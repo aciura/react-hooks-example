@@ -16,11 +16,6 @@ export function moveShip({ state, currentTime }) {
     worldWidth,
     worldHeight,
   } = state
-  console.log(
-    `State: speed:${shipSpeed} dir:${shipDirection} pos:${shipPosition.x},${
-      shipPosition.y
-    }`
-  )
   const newState = { ...state }
 
   const newX =
