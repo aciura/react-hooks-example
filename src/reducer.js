@@ -17,7 +17,7 @@ export const initState = {
 }
 
 export function reducer(state, action) {
-  console.log('reducer', state, action)
+  console.log('reducer', action)
 
   switch (action.type) {
     case actionType.GameTick: {
