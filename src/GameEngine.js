@@ -5,7 +5,7 @@ export function moveShip({ state, currentTime }) {
   console.log(`GameEngine: update# ${updateCount++}`)
   const timeDiff = currentTime - lastUpdateTime
   console.log(
-    `GameEngine: moveShip, time diff:${timeDiff}, fps: ${1000 / timeDiff}`
+    `GameEngine: moveShip, time diff:${timeDiff}ms, fps: ${1000 / timeDiff}`
   )
 
   const {

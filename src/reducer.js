@@ -1,5 +1,5 @@
 import { actionType } from './actions'
-import { moveShip } from './gameEngine'
+import { moveShip } from './GameEngine'
 
 export const initState = {
   gameTick: 0,
