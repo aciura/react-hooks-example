@@ -3,6 +3,7 @@ import { moveShip } from './GameEngine'
 
 export const initState = {
   gameTick: 0,
+  isPlaying: true,
 
   shipPath: [],
   dispatch: () => {},
@@ -48,6 +49,13 @@ export function reducer(state, action) {
       return {
         ...state,
         shipName: action.payload,
+      }
+    }
+
+    case actionType.GamePlayingChange: {
+      return {
+        ...state,
+        isPlaying: action.payload,
       }
     }
 

@@ -4,6 +4,7 @@ export const actionType = {
   ShipMoved: 'ship.moved',
   ShipSpeedChange: 'ship.speedChange',
   ShipDirectionChange: 'ship.directionChange',
+  GamePlayingChange: 'game.isPlayingChange',
 }
 
 export function gameTickAction(time) {
@@ -24,4 +25,8 @@ export function shipSpeedChangeAction(newSpeed) {
 
 export function shipDirectionChangeAction(newDirection) {
   return { type: actionType.ShipDirectionChange, payload: newDirection }
+}
+
+export function gamePlayingChangeAction(isPlaying) {
+  return { type: actionType.GamePlayingChange, payload: isPlaying }
 }

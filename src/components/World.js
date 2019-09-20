@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import OceanAnimation from './OceanAnimation'
 import { Ship } from './Ship'
 import useWindowSize from '../hooks/useWindowSize'
+import GameContext from './GameContext'
 
 export const World = ({ width = 800, height = 600 }) => {
   console.log('World')
@@ -10,6 +11,7 @@ export const World = ({ width = 800, height = 600 }) => {
   const windowSize = useWindowSize()
 
   const [offset, setOffset] = useState({})
+  const { isPlaying } = useContext(GameContext)
 
   // run this effect each time windowSize has changed
   useEffect(() => {
@@ -21,7 +23,7 @@ export const World = ({ width = 800, height = 600 }) => {
   return (
     <React.Fragment>
       <div ref={oceanRef}>
-        <OceanAnimation width={width} height={height} />
+        <OceanAnimation width={width} height={height} isPlaying={isPlaying} />
       </div>
       <Ship offset={offset} initX={width / 2} initY={height / 2} />
     </React.Fragment>

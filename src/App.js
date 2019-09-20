@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react'
+import React, { useReducer } from 'react'
 import GameContext from './components/GameContext'
 import { ShipNameForm } from './components/ShipNameForm'
 import { World } from './components/World'
@@ -6,13 +6,14 @@ import { reducer, initState } from './reducer'
 import './App.css'
 import { KeyboardController } from './components/KeyboardController'
 import { useTimer } from './hooks/useTimer'
+import { gamePlayingChangeAction } from './actions'
 
 const App = () => {
   console.log('App')
 
   const [state, dispatch] = useReducer(reducer, initState)
   const { worldWidth, worldHeight } = state
-  const [isPlaying, setIsPlaying] = useState(true)
+  const { isPlaying } = state
 
   useTimer(isPlaying, dispatch)
 
@@ -22,10 +23,10 @@ const App = () => {
       <GameContext.Provider value={{ ...state, dispatch }}>
         <KeyboardController />
         <ShipNameForm />
-        <World width={worldWidth} height={worldHeight} />
-        <button onClick={() => setIsPlaying(!isPlaying)}>
+        <button onClick={() => dispatch(gamePlayingChangeAction(!isPlaying))}>
           {isPlaying ? 'Pause' : 'Play'}
         </button>
+        <World width={worldWidth} height={worldHeight} />
       </GameContext.Provider>
     </div>
   )
